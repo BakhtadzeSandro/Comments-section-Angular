@@ -15,7 +15,7 @@ import { DeleteModalComponent } from './comment-section/delete-modal/delete-moda
     CommentSectionComponent,
     NewCommentComponent,
     ReplyCommentComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
   ],
   imports: [
     BrowserModule,

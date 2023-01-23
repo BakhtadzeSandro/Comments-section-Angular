@@ -26,7 +26,7 @@
                             </div>
                         </div>
                         <div class="comment-content" *ngIf="edittedCommentId != comment.id">{{ comment.content }}</div>
-                        <textarea cols="66" rows="3" class="new-comment-textarea" *ngIf="edittedCommentId == comment.id" [(ngModel)]="edittedCommentContent">Hello</textarea>
+                        <textarea cols="66" rows="3" class="new-comment-textarea" *ngIf="edittedCommentId == comment.id" [(ngModel)]="edittedCommentContent"></textarea>
                         <button class="update-button" *ngIf="edittedCommentId == comment.id" (click)="updateComment(i)">UPDATE</button>
                     </div>
               </div>
@@ -53,12 +53,14 @@
                                 <img [src]="deleteButtonPath" *ngIf="currentUser.username == reply.user.username">
                                 <button class="delete-button" *ngIf="currentUser.username == reply.user.username" (click)="deleteReply(i,j)">Delete</button>
                                 <img [src]="editButtonPath" *ngIf="currentUser.username == reply.user.username">
-                                <button class="edit-button" *ngIf="currentUser.username == reply.user.username">Edit</button>
+                                <button class="edit-button" *ngIf="currentUser.username == reply.user.username" (click)="editReply(i,j)">Edit</button>
                                 <img [src]="replyButtonPath" *ngIf="currentUser.username != reply.user.username">
-                                <button class="reply-button" *ngIf="currentUser.username != reply.user.username" (click)="editReply(i,j)">Reply</button>
+                                <button class="reply-button" *ngIf="currentUser.username != reply.user.username">Reply</button>
                             </div>
                         </div>
-                        <div class="comment-content">{{ reply.content }}</div>
+                        <div class="comment-content" *ngIf="edittedReplyId != reply.id">{{ reply.content }}</div>
+                        <textarea cols="66" rows="3" class="new-comment-textarea" *ngIf="edittedReplyId == reply.id" [(ngModel)]="edittedReplyContent"></textarea>
+                        <button class="update-button" *ngIf="edittedReplyId == reply.id" (click)="updateReply(i, j)">UPDATE</button>
                     </div>
               </div>
             </div>
