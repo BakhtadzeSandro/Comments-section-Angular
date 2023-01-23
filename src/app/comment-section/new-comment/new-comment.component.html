@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="comment-section">
+        <div class="comment-container">
+            <div class="new-comment">
+                <img [src]="currentUser.image.png" class="avatar">
+                <textarea cols="55" rows="4" class="new-comment-textarea" [placeholder]="placeholder" [(ngModel)]="newCommentContent"></textarea>
+                <button class="new-comment-button" (click)="addNewComment()">SEND</button>
+            </div>
+        </div>
+    </div>
+</div>

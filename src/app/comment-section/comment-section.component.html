@@ -1,0 +1,71 @@
+<div class="entire-section" [ngStyle]="{'opacity': showDeleteModal ? '0.4' : '1'}">
+    <div class="container" *ngFor="let comment of comments; let i = index;">
+        <div class="comments-section">
+            <div class="comment-container">
+                <div class="comment-flex">
+                    <div class="comment-left">
+                        <button class="plus" (click)="plusScore(i)">+</button>
+                        <div class="comment-score">{{ comment.score }}</div>
+                        <button class="minus" (click)="minusScore(i)">-</button>
+                    </div>
+                    <div class="comment-right">
+                        <div class="comment-header">
+                            <div class="comment-header-left">
+                                <img [src]="comment.user.image.png" class="avatar">
+                                <div class="comment-username">{{ comment.user.username }}</div>
+                                <div class="current-user" *ngIf="currentUser.username == comment.user.username">you</div>
+                                <div class="comment-created-at">{{ comment.createdAt }}</div>
+                            </div>
+                            <div class="comment-header-right">
+                                <img [src]="deleteButtonPath" *ngIf="currentUser.username == comment.user.username">
+                                <button class="delete-button" *ngIf="currentUser.username == comment.user.username" (click)="deleteComment(i)">Delete</button>
+                                <img [src]="editButtonPath" *ngIf="currentUser.username == comment.user.username">
+                                <button class="edit-button" *ngIf="currentUser.username == comment.user.username" (click)="editComment(i)">Edit</button>
+                                <img [src]="replyButtonPath" *ngIf="currentUser.username != comment.user.username">
+                                <button class="reply-button" *ngIf="currentUser.username != comment.user.username" (click)="addReply(i)">Reply</button>
+                            </div>
+                        </div>
+                        <div class="comment-content" *ngIf="edittedCommentId != comment.id">{{ comment.content }}</div>
+                        <textarea cols="66" rows="3" class="new-comment-textarea" *ngIf="edittedCommentId == comment.id" [(ngModel)]="edittedCommentContent">Hello</textarea>
+                        <button class="update-button" *ngIf="edittedCommentId == comment.id" (click)="updateComment(i)">UPDATE</button>
+                    </div>
+              </div>
+            </div>
+            <app-reply-comment *ngIf="replyIsActive == true && currentCommentId == comment.id" (replyAdded)="addNewReplyHandler($event)"></app-reply-comment>
+        </div>
+        <div class="reply-section" *ngFor="let reply of comment.replies; let j = index">
+            <div class="comment-container">
+                <div class="comment-flex">
+                    <div class="comment-left">
+                        <button class="plus">+</button>
+                        <div class="comment-score">{{ reply.score }}</div>
+                        <button class="minus">-</button>
+                    </div>
+                    <div class="comment-right">
+                        <div class="comment-header">
+                            <div class="comment-header-left">
+                                <img [src]="reply.user.image.png" class="avatar">
+                                <div class="comment-username">{{ reply.user.username }}</div>
+                                <div class="current-user" *ngIf="currentUser.username == reply.user.username">you</div>
+                                <div class="comment-created-at">{{ reply.createdAt }}</div>
+                            </div>
+                            <div class="comment-header-right">
+                                <img [src]="deleteButtonPath" *ngIf="currentUser.username == reply.user.username">
+                                <button class="delete-button" *ngIf="currentUser.username == reply.user.username" (click)="deleteReply(i,j)">Delete</button>
+                                <img [src]="editButtonPath" *ngIf="currentUser.username == reply.user.username">
+                                <button class="edit-button" *ngIf="currentUser.username == reply.user.username">Edit</button>
+                                <img [src]="replyButtonPath" *ngIf="currentUser.username != reply.user.username">
+                                <button class="reply-button" *ngIf="currentUser.username != reply.user.username" (click)="editReply(i,j)">Reply</button>
+                            </div>
+                        </div>
+                        <div class="comment-content">{{ reply.content }}</div>
+                    </div>
+              </div>
+            </div>
+            <!-- <app-reply-comment *ngIf="replyIsActive == true && currentReplyId == reply.id"></app-reply-comment> -->
+        </div>
+    </div>
+    
+    <app-new-comment (commentAdded)="addNewCommentHandler($event)"></app-new-comment>    
+</div>
+<app-delete-modal *ngIf="showDeleteModal == true" (cancelButton)="cancelDeletionHandler()" (deleteButton)="confirmDeletionHandler()"></app-delete-modal>

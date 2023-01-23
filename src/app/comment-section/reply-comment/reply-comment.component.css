@@ -1,0 +1,46 @@
+.container{
+    width: 100%;
+}
+.current-user{
+    border: 1px solid rgb(64, 64, 194);;
+    background-color: rgb(64, 64, 194);;
+    color: white;
+    padding: 2px;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+.comments-section {
+    display: flex;
+    flex-wrap: wrap;
+}
+.comment-container {
+    padding: 16px;
+    background-color: #ffffff;
+    margin-top: 20px;
+    border-radius: 8px;
+    width: 100%;
+}
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.new-comment-textarea{
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+}
+.new-comment{
+    display: flex;
+    justify-content: space-between;
+}
+.new-comment-button{
+    height: 50px;
+    width: 80px;
+    background-color: rgb(64, 64, 194);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
