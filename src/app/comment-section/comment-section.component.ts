@@ -31,6 +31,22 @@ export class CommentSectionComponent {
     this.sortComments();
   }
 
+  // Sorting replies.
+
+  sortReplies(){
+    this.comments
+  }
+
+  plusScoreReply(commentI: number, replyI: number){
+    this.comments[commentI].replies[replyI].score++;
+    this.comments[commentI].replies.sort((a, b) => b.score - a.score);
+  }
+
+  minusScoreReply(commentI: number, replyI: number){
+    this.comments[commentI].replies[replyI].score--;
+    this.comments[commentI].replies.sort((a, b) => b.score - a.score);
+  }
+
   // Adding new comment.
 
   addNewCommentHandler(content: string){

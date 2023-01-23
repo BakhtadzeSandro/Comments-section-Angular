@@ -37,9 +37,9 @@
             <div class="comment-container">
                 <div class="comment-flex">
                     <div class="comment-left">
-                        <button class="plus">+</button>
+                        <button class="plus" (click)="plusScoreReply(i,j)">+</button>
                         <div class="comment-score">{{ reply.score }}</div>
-                        <button class="minus">-</button>
+                        <button class="minus" (click)="minusScoreReply(i,j)">-</button>
                     </div>
                     <div class="comment-right">
                         <div class="comment-header">
